@@ -2,20 +2,16 @@
 import data_retrieval
 
 class CoinInfo:
-    def __init__(self, name):
-        self.coin_name = name
-        self.price = data_retrieval.retrieve_price(name)
-        self.rank = data_retrieval.retrieve_rank(name)
+    def __init__(self, data):
+        self.coin_name = data_retrieval.retrieve_name(data)
+        self.price = data_retrieval.retrieve_price(data)
+        self.rank = data_retrieval.retrieve_rank(data)
 
-    def get_retrieve_price(self):
+    def get_price(self):
         return self.price
     
-    def set_retrieve_price(self):
-        self.price = data_retrieval.retrieve_price(self.coin_name)
-    
-    def get_retrieve_rank(self):
+
+    def get_rank(self):
         return self.rank
 
-    def set_retrieve_rank(self):
-        self.rank = data_retrieval.retrieve_rank(self.coin_name)
         
