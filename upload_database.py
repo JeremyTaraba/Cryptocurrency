@@ -17,15 +17,18 @@ def upload(data):
 
 def collect_data(data): # per coin
     coinData = coin_info.CoinInfo(data)
+    tweets = {}
+
     coin = {
         'Name': coinData.coin_name,
         'Price': coinData.get_price(),
-        'Rank': coinData.get_rank()
+        'Rank': coinData.get_rank(),
+        'Tweets': tweets
     }
     return coin
 
 def collect_and_upload(): 
-    for i in range(5):
+    for i in range(100):
         coin = collect_data(data_coins[i])
         upload(coin)
 
@@ -38,4 +41,3 @@ def firebase_update():
     delete_data()
     collect_and_upload()
 
-firebase_update()
