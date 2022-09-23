@@ -4,6 +4,8 @@ from firebase import firebase
 import coin_info
 import requests
 
+from twitterapi import calculate_polarity, getcointweets
+
 firebase = firebase.FirebaseApplication("https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/", None)
 url_name = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C30d"
 response = requests.get(url_name)
@@ -17,20 +19,23 @@ def upload(data):
 
 def collect_data(data): # per coin
     coinData = coin_info.CoinInfo(data)
-    tweets = {}
-
+    tweets = getcointweets(coinData.coin_name)
+    polarity = calculate_polarity(tweets)
     coin = {
         'Name': coinData.coin_name,
         'Price': coinData.get_price(),
         'Rank': coinData.get_rank(),
-        'Tweets': tweets
+        #'Tweets': tweets
+        'Polarity': polarity
     }
     return coin
 
 def collect_and_upload(): 
-    for i in range(100):
+    for i in range(10):
         coin = collect_data(data_coins[i])
         upload(coin)
+        
+    
 
 def delete_data():
     firebase.delete('cryptoanalyzer-fc741/','CryptoData')

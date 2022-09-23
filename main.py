@@ -4,6 +4,7 @@
 from upload_database import firebase_update
 
 firebase_update()
+
 # print("Enter what coin you want to check")
 # coin_name = input()
 # coin = coin_info.CoinInfo(coin_name)
