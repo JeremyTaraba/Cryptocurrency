@@ -3,6 +3,7 @@ from gc import collect
 from firebase import firebase
 import coin_info
 import requests
+import settings
 
 from twitterapi import calculate_polarity, getcointweets
 
@@ -23,15 +24,19 @@ def collect_data(data): # per coin
     polarity = calculate_polarity(tweets)
     coin = {
         'Name': coinData.coin_name,
-        'Price': coinData.get_price(),
-        'Rank': coinData.get_rank(),
-        #'Tweets': tweets
-        'Polarity': polarity
+        'Price': coinData.price,
+        'Rank': coinData.rank,
+        'Polarity': polarity,
+        'Price 24hr': coinData.price_24h,
+        'Price 30d' : coinData.price_30d,
+        'Price 7d' : coinData.price_7d,
+        'Market Cap' : coinData.MC,
+        'Market Cap 24hr' : coinData.MC_24h,
     }
     return coin
 
 def collect_and_upload(): 
-    for i in range(10):
+    for i in range(settings.TOTAL_COINS):
         coin = collect_data(data_coins[i])
         upload(coin)
         
