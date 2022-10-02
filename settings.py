@@ -1,2 +1,2 @@
-TOTAL_COINS = 50
+TOTAL_COINS = 50    # up to 250
 TOTAL_TWEETS = "10"

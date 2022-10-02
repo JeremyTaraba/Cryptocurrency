@@ -8,7 +8,7 @@ import settings
 from twitterapi import calculate_polarity, getcointweets
 
 firebase = firebase.FirebaseApplication("https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/", None)
-url_name = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C30d"
+url_name = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page="+settings.TOTAL_COINS+"&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C30d"
 response = requests.get(url_name)
 data_coins = response.json()
 
