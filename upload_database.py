@@ -8,14 +8,15 @@ import settings
 from twitterapi import calculate_polarity, getcointweets
 
 firebase = firebase.FirebaseApplication("https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/", None)
-url_name = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page="+settings.TOTAL_COINS+"&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C30d"
+url_name = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page="+str(settings.TOTAL_COINS)+"&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C30d"
+firebaseUrl = "https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/cryptoanalyzer-fc741/NewCryptoData.json"
 response = requests.get(url_name)
 data_coins = response.json()
-
+oldFirebaseData = requests.get(firebaseUrl).json()
 
 
 def upload(data):
-    firebase.post('cryptoanalyzer-fc741/CryptoData', data)
+    firebase.post('cryptoanalyzer-fc741/NewCryptoData', data)
 
 
 def collect_data(data): # per coin
@@ -35,19 +36,31 @@ def collect_data(data): # per coin
     }
     return coin
 
-def collect_and_upload(): 
+def collect_and_upload(): # add new 24 hour data
     for i in range(settings.TOTAL_COINS):
         coin = collect_data(data_coins[i])
         upload(coin)
         
     
 
-def delete_data():
-    firebase.delete('cryptoanalyzer-fc741/','CryptoData')
-    pass
+def delete_data():  # delete 24 hour old data
+    firebase.delete('cryptoanalyzer-fc741/','OldCryptoData')
+    
+
+def move_data():
+    for i in oldFirebaseData.keys():
+        oldData = oldFirebaseData[i]
+        firebase.post('cryptoanalyzer-fc741/OldCryptoData', oldData)
+    firebase.delete('cryptoanalyzer-fc741/','NewCryptoData')
+ 
 
 
-def firebase_update():
+def firebase_update(): # delete old data, move data to other folder
     delete_data()
+    move_data()
     collect_and_upload()
 
+# for i in oldFirebaseData.keys():
+#         oldData = oldFirebaseData[i]
+#         print(oldData)
+firebase_update()

@@ -85,7 +85,7 @@ def calculate_polarity(tweets):
 
 def getcointweets(coin_name):
     coin_name = cleanName(coin_name)
-    url = "https://api.twitter.com/2/tweets/search/recent?query="+str(coin_name)+" -is:retweet&max_results="+settings.TOTAL_TWEETS+"&user.fields=verified"
+    url = "https://api.twitter.com/2/tweets/search/recent?query="+str(coin_name)+" -is:retweet&max_results="+str(settings.TOTAL_TWEETS)+"&user.fields=verified"
     tweets = []
     response = requests.request("GET", url, headers=headers, data=payload)
     data = response.json()
