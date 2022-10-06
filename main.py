@@ -2,11 +2,12 @@
 
 from upload_database import firebase_update
 
-firebase_update()
+firebase_update()   # check if 24 hours have passed, if yes then update database
 print("Coin Data Successfully Uploaded")
+
 print("Processing Data: ")
-#process_data() #train and test? or maybe do train first and then test
-#add a global value for how many coins we want and how many tweets we want so we can easily change it
+
+
 
 # print("Enter what coin you want to check")
 # coin_name = input()
