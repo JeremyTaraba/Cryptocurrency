@@ -7,7 +7,7 @@ from upload_database import firebase_update
 # schedule.every().day.at("16:47").do(firebase_update)
 
 
-#firebase_update()   # check if 24 hours have passed, if yes then update database
+firebase_update()   # check if 24 hours have passed, if yes then update database
 print("Coin Data Successfully Uploaded")
 
 print("Processing Data: ")
