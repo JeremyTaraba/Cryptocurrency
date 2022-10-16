@@ -81,7 +81,7 @@ def calculate_polarity(tweets):
 
   return totalPolarity
 
- 
+  
 
 def getcointweets(coin_name):
     coin_name = cleanName(coin_name)
