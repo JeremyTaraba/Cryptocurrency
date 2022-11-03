@@ -1,7 +1,7 @@
 
 from gc import collect
 from firebase import firebase
-import coin_info
+import coin_info as coin_info
 import requests
 import settings
 

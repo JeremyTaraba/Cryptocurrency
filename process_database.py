@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 
 
-import coin_info
+#import coin_info as coin_info
 import requests
 
 
