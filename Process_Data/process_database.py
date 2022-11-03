@@ -23,9 +23,6 @@ url_oldData = "https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/cryptoan
 
 def prediction(model, data, coinNames):
     prediction = model.predict(data)
-    print("Predictions: ")
-    # print(coinNames[0])
-    # print(prediction[0])
    
     # Make a random dataset:
     height = prediction
