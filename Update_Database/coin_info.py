@@ -1,5 +1,5 @@
 # coin_info.py
-import data_retrieval
+import data_retrieval as data_retrieval
 
 class CoinInfo:
     def __init__(self, data):

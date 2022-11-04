@@ -41,7 +41,15 @@ def collect_and_upload(): # add new 24 hour data
         coin = collect_data(data_coins[i])
         upload(coin)
         
-    
+def upload_2():
+    for i in oldFirebaseData.keys():
+        for j in range(settings.TOTAL_COINS):
+            id = data_coins[j]['id']
+            name = oldFirebaseData[i]['Name']
+            if(name == id):
+                coin = collect_data(data_coins[j])
+                upload(coin)
+                break
 
 def delete_data():  # delete 24 hour old data
     firebase.delete('cryptoanalyzer-fc741/','OldCryptoData')
@@ -60,7 +68,10 @@ def firebase_update(): # delete old data, move data to other folder
     move_data()
     collect_and_upload()
 
-# for i in oldFirebaseData.keys():
-#         oldData = oldFirebaseData[i]
-#         print(oldData)
-firebase_update()
+# make sure to increase the amount of coins in settings when doing this option
+def second_update(): # used for if the order of coin rankings has changed, will keep coins in order in database regardless of ranking
+    delete_data()
+    move_data()
+    upload_2() # slower than the collect_and_upload because we have to go through a nested loop
+
+

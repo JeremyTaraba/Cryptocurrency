@@ -17,10 +17,6 @@ url_oldData = "https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/cryptoan
 
 
 
-
-
-
-
 def prediction(model, data, coinNames):
     prediction = model.predict(data)
    
