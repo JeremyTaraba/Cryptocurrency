@@ -25,14 +25,14 @@ def collect_data(data): # per coin
     polarity = calculate_polarity(tweets)
     coin = {
         'Name': coinData.coin_name,
-        'Price': coinData.price,
+        'Price': round(coinData.price,5),
         'Rank': coinData.rank,
-        'Polarity': polarity,
-        'Price 24hr': coinData.price_24h,
-        'Price 30d' : coinData.price_30d,
-        'Price 7d' : coinData.price_7d,
+        'Polarity': round(polarity,5),
+        'Price 24hr': round(coinData.price_24h,5),
+        'Price 30d' : round(coinData.price_30d,5),
+        'Price 7d' : round(coinData.price_7d,5),
         'Market Cap' : coinData.MC,
-        'Market Cap 24hr' : coinData.MC_24h,
+        'Market Cap 24hr' : round(coinData.MC_24h,5)
     }
     return coin
 
@@ -43,7 +43,7 @@ def collect_and_upload(): # add new 24 hour data
         
 def upload_2():
     for i in oldFirebaseData.keys():
-        for j in range(settings.TOTAL_COINS):
+        for j in range(settings.TOTAL_COINS*2):
             id = data_coins[j]['id']
             name = oldFirebaseData[i]['Name']
             if(name == id):
@@ -73,5 +73,4 @@ def second_update(): # used for if the order of coin rankings has changed, will 
     delete_data()
     move_data()
     upload_2() # slower than the collect_and_upload because we have to go through a nested loop
-
 

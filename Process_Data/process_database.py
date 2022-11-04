@@ -78,14 +78,13 @@ def processData():
     dataFrame = dataFrame.T # transpose so its in the correct order
     futureData = pd.read_json(url_newData) # new data 24 hours ahead of old data
     futureData = futureData.T
-
     
     X = dataFrame.drop(columns=["Price 24hr", "Name"])
     Y = futureData["Price 24hr"]
     model = trainModel(X,Y)
 
-    coinNames = futureData["Name"]
-    futurePredict = futureData.drop(columns=["Price 24hr", "Name"]) # might want to save names somewhere to add them to a new list after prediction
+    coinNames = futureData["Name"] # save names to add them to a new list after prediction
+    futurePredict = futureData.drop(columns=["Price 24hr", "Name"]) 
     prediction(model, futurePredict, coinNames)
 
 
