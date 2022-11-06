@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 import numpy as np
-import plotly.graph_objects as go
+
 
 #import Update_Database.coin_info as coin_info
 import requests
@@ -20,7 +20,7 @@ url_oldData = "https://cryptoanalyzer-fc741-default-rtdb.firebaseio.com/cryptoan
 def prediction(model, data, coinNames):
     prediction = model.predict(data)
    
-    # Make a random dataset:
+    # Make the graph:
     height = prediction
     bars = coinNames
     y_pos = np.arange(len(bars))
@@ -45,6 +45,7 @@ def prediction(model, data, coinNames):
 
     # Show graphic
     plt.show()
+    return prediction
 
     
 
@@ -85,7 +86,7 @@ def processData():
 
     coinNames = futureData["Name"] # save names to add them to a new list after prediction
     futurePredict = futureData.drop(columns=["Price 24hr", "Name"]) 
-    prediction(model, futurePredict, coinNames)
+    return prediction(model, futurePredict, coinNames)
 
 
 
