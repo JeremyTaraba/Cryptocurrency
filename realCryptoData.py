@@ -39,14 +39,15 @@ for i in range(len(prediction)):
     difference = difference / realHourData[i]
     difference = difference * 100
     percentageResults.append(100 - difference)
-    print(100-difference)
+    # print(100-difference)
 
 sum = 0
 for i in percentageResults:
     sum += i
 
+print(sum / settings.TOTAL_COINS) # average accuracy 
 
-print(sum / settings.TOTAL_COINS)
+
 
 
 

@@ -24,9 +24,18 @@ The machine learning algorithm uses a machine learning library for Python called
 
 
 ### Results
+The model was trained during a time when a lot of the coins were declining in price. This is the predicted 24 hour price change of the top 100 coins on November 6, 2022
 
+![](PredictedPriceChange.png)
 
+And this was the actual historic crypto price change for November 6, 2022
 
+![](ActualPriceChange.png)
+
+As you can see it wasn't far off in its prediction. The model that predicted this had an R2 score of .51 meaning it should only have about 51% accuracy. I did try to get a higher score but it took a very long time to even get 51%.
+
+Some things that could improve this model would be to use data from different seasons/quarters instead of all from the same week. Crypto fluctuates all the time and having more data with these fluctuations would help the model make more accurate predictions during times of decline and times of increase in crypto prices.
+Another way to improve this model would be to remove the polarity since there has been similar studies that found out that polarity is not very deterministic and might even hurt the regression model, instead, using google trends would be better and less opinionated.
 
 
 ### Similar Works
@@ -51,8 +60,7 @@ https://scholar.smu.edu/cgi/viewcontent.cgi?article=1039&context=datasciencerevi
 
 
 
-This paper attempts to find a solution to predicting cryptocurrency price changes using sentiment analysis of tweets. They concluded that sentiment analysis for prediction is not as effective when the price is falling but instead Google trends and tweet volume are much better for prediction. Compared to my work, this paper uses a Python Twitter library called Tweepy for Python API called while I used Postman to call the Twitter API. Both approaches effectively tweets from Twitter. This paper cleans the tweets similarly to how I cleaned my tweets before using a sentiment analysis algorithm. This paper does not use machine learning but instead only uses the polarity of the tweets to tell if the cryptocurrency will increase or decrease.
-
+This paper attempts to find a solution to predicting cryptocurrency price changes using sentiment analysis of tweets. They concluded that sentiment analysis for prediction is not as effective when the price is falling but instead Google trends and tweet volume are much better for prediction. Compared to my work, this paper uses a Python Twitter library called Tweepy for Python API called while I used Postman to call the Twitter API. Both approaches effectively get tweets from Twitter. This paper cleans the tweets similarly to how I cleaned my tweets before using a sentiment analysis algorithm. This paper does not use machine learning but instead only uses the polarity of the tweets to tell if the cryptocurrency will increase or decrease.
 
 
 
