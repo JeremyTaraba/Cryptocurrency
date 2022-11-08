@@ -32,20 +32,23 @@ for i in oldFirebaseData.keys():
 # subtract the observed value from the true value, divide by the true value, multiply by 100, then subtract this result from 100
 
 prediction = process_database.processData()
-percentageResults = []
+
+lowestError = 100
+highestError = 0
 
 for i in range(len(prediction)):
-    difference =  realHourData[i] - prediction[i]
+    difference = realHourData[i] - prediction[i]
     difference = difference / realHourData[i]
     difference = difference * 100
-    percentageResults.append(100 - difference)
-    # print(100-difference)
+    if(lowestError > difference and difference > 0):
+        lowestError = difference
+    if(highestError < difference):
+        highestError = difference
 
-sum = 0
-for i in percentageResults:
-    sum += i
 
-print(sum / settings.TOTAL_COINS) # average accuracy 
+
+print("Lowest Error:" + str(lowestError)) 
+print("Highest Error:" + str(highestError))
 
 
 
