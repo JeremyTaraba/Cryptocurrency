@@ -59,9 +59,6 @@ def stem(text):
     stem_sentence.append(porter.stem(word))
   return " ".join(stem_sentence)
 
-
-
-
 def sentiment_polarity(cleaned_text):
   # Returns the sentiment based on the polarity of the input TextBlob object
   text = TextBlob(cleaned_text)
