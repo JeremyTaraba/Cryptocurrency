@@ -1,4 +1,6 @@
-## Cryptocurrency Machine Learning Predictor
+# Research Paper: Cryptocurrency Machine Learning Predictor
+
+Authors: Jeremy Taraba, Eric Que
 
 ## Introduction
 
@@ -26,11 +28,11 @@ The machine learning algorithm uses a machine learning library for Python called
 ### Results
 The model was trained during a time when a lot of the coins were declining in price. This is the predicted 24 hour price change of the top 100 coins on November 6, 2022
 
-![](PredictedPriceChange.png)
+![PredictedPrice](PredictedPriceChange.png)
 
 And this was the actual historic crypto price change for November 6, 2022
 
-![](ActualPriceChange.png)
+![ActualPrice](ActualPriceChange.png)
 
 As you can see it wasn't far off in its prediction. The model that predicted this had an R2 score of .51 meaning it should only have about 51% accuracy. I did try to get a higher score but it took a very long time to even get 51%.
 
